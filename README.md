@@ -20,3 +20,20 @@ __Tasks:__
 - Stop services you dont need for this project
 - Create __script__ that updates all the sources of package (scheduled task for this script once a week at 4AM and every time the machine reboots)
 - Make a script to monitor changes of the /etc/__crontab__ file and sends an email to root if it has been modified (create a scheduled script task every day at midnight)
+
+----
+# 1.
+When setting up the machine I created a non-root user. To access sudo with the non-root user we first
+need to install the `sudo` command. For this we need to switch to the root by the `su` command.
+
+Then we can install sudo with the command:
+```
+$ apt-get install sudo vim -y
+```
+Tog give the non-root user sudo rights we need to add the user to the `/etc/sudoers` file.
+`username ALL=(ALL:ALL)` should be added to the *# User priviliege specification* -section.
+
+---
+# 2.
+
+
