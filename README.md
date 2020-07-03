@@ -53,14 +53,27 @@ cat /etc/network/interfaces.d/enp0s3
 ```
 ```
 iface enp0s3 inet static
-      address 10.11.200.247
+      address 10.133.133.133
       netmask 255.255.255.252
       gateway 10.11.254.254
 ```
 Then `sudo service networking restart` to make changes effective and then we can check
 the ip with `ip addr`. You will see that the ip is the one set in the `/etc/network/interfaces.d/enp0s3` file!
 
+After that we need to set the port we want in the file `/etc/ssh/sshd_config`. The row with Port need to be changed to what you want and made sure that it is not commented out (remove #).
+
+Then
+```
+$ sudo service sshd restart
+```
+
 ---
 # 3
+
+Now it is time to set up the SSH access with publickeys. First, on the host machine that you want to connect from do:
+```
+ssh-keygen -t rsa
+```
+to generate the ssh key pair!
 
 
