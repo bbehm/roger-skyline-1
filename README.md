@@ -68,7 +68,7 @@ $ sudo service sshd restart
 ```
 
 ---
-# 3
+# 3.
 
 Now it is time to set up the SSH access with publickeys. First, on the host machine that you want to connect from do:
 ```
@@ -89,4 +89,21 @@ PasswordAuthentication no
 Remember to uncomment where needed (by removing the '#').
 
 ---
+# 4.
+
+We will set up the __Firewall__ using UFW, [Uncomplicated Firewall](https://wiki.ubuntu.com/UncomplicatedFirewall).
+
+First we need to install UFW by `sudo apt-get install ufw`, then check the status with `sudo ufw status` if it's inactive we can enable it by `sudo ufw enable`.
+
+Then it's time to allow some services
+
+1. ssh connections through our chosen port `sudo ufw allow 55555/tcp`
+2. incoming __http__ connections (port 80) `sudo ufw allow 80/tcp`
+3. incoming __https__ connections (port 443) `sudo ufw allow 443`
+
+The status of the firewall can be checked with the `sudo ufw status` command.
+
+![ufw status](images/ufw_status.png)
+
+Next up, __Fail2Ban__, to set up a __DOS__ (Denial of Service Attack). 
 
