@@ -53,7 +53,7 @@ cat /etc/network/interfaces.d/enp0s3
 ```
 ```
 iface enp0s3 inet static
-      address 10.133.133.133
+      address 10.12.133.***
       netmask 255.255.255.252
       gateway 10.11.254.254
 ```
@@ -76,4 +76,17 @@ ssh-keygen -t rsa
 ```
 to generate the ssh key pair!
 
+Then, let's copy the __public key__ from the host machine to the VM. That can be done with the command:
+
+`ssh-copy-id -i id_rsa.pub bianca@10.12.133.*** -p 55555`
+
+Next, let's edit the `sshd_config` file to deny root login and remove password authentication. Edit the following lines:
+```
+PermitRootLogin no
+PubkeyAuthentication yes
+PasswordAuthentication no
+```
+Remember to uncomment where needed (by removing the '#').
+
+---
 
