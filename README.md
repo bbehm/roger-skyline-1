@@ -107,3 +107,39 @@ The status of the firewall can be checked with the `sudo ufw status` command.
 
 Next up, __Fail2Ban__, to set up a __DOS__ (Denial of Service Attack). 
 
+Let's first install Fail2Ban: `sudo apt-get install fail2ban`.
+
+Then we need to copy the configuration file to edit it:
+```
+$ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+```
+Edit the jail.local file to have:
+
+Under __SSH servers__ (protecting my chosen port 55555)
+
+```
+[sshd]
+enable = true
+port = ssh
+logpath = %(sshd_log)s
+backend = %(sshd_backend)s
+maxentry = 3
+bantime = 600
+```
+
+Under __HTTP servers__ (protecting port 80)
+```
+[http-get-dos]
+
+enabled = true
+port = http, https
+filter = http-get-dos
+logpath = %(apache_error_log)s
+maxentry = 300
+findtime = 300
+bantime = 600
+action = iptables[name=HTTP, port=http, protocol=tcp]
+```
+
+Let's also install iptables and apache `sudo apt-get install iptables apache2`
+
