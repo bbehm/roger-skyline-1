@@ -204,4 +204,38 @@ sudo systemctl disable apt-daily-upgrade.timer
 ---
 # 8.
 
+The next task is to create a script that updates all sources of package. This should happen once a week at 4AM and every time the machine reboots.
 
+First, create a `.sh` file, then add the following lines to it
+```
+sudo apt-get update -y >> /var/log/filename.log
+sudo apt-get upgrade -y >> /var/log/filename.log
+```
+Run, `sudo crontab -e` - and add the following lines to the crontab
+
+```
+@reboot /home/user/filename.sh &
+0 4 ** MON /home/user/filename/sh &
+```
+
+Next we need to create a script to monitor changes to the /etc/crontab file and send an email to root if modified. This should happen every day at midnight.
+
+Again, create a new `.sh` file. Add the following content:
+
+![monitoring script](images/monitoring_script.png)
+
+We need to add the monitoring to crontab by `sudo crontab -e` and adding one last line
+```
+0 0 * * * /home/user/other_filename.sh
+```
+Then we need to install the mailutils to be able to check received mails. With the `mailx` command we can read the mail, it can also be found in `/var/mail/`.
+
+```
+$ sudo apt-get install mailutils
+$ mailx
+```
+
+---
+# 9.
+
+Time to __deploy a web application__ with our VM IP!
