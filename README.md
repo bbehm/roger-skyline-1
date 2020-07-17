@@ -173,3 +173,20 @@ perl slowloris.py 10.12.133.***
 
 Let's set up a protection against __scans on open ports__ on our VM. 
 
+```
+$ sudo apt-get install portsentry
+```
+Then, modify the file `/etc/default/portsentry` to be:
+```
+TCP_MODE="atcp"
+UDP_MODE="audp"
+```
+In `/etc/portsentry/portsentry.conf` under *Ignore Options*, change BLOCK_UDP and BLOCK_TCP to be 1 instead of 0. Under *Dropping Routes*, comment out all other KILL_ROUTE -lines except for the one under *iptables support for Linux*.
+
+Restart the portsentry service with `sudo service portsentry restart`.
+
+---
+# 7.
+
+Now it is time to __stop the services we don't need__. 
+
