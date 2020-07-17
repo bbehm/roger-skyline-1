@@ -105,6 +105,9 @@ The status of the firewall can be checked with the `sudo ufw status` command.
 
 ![ufw status](images/ufw_status.png)
 
+---
+# 5.
+
 Next up, __Fail2Ban__, to set up a __DOS__ (Denial of Service Attack). 
 
 Let's first install Fail2Ban: `sudo apt-get install fail2ban`.
@@ -142,4 +145,31 @@ action = iptables[name=HTTP, port=http, protocol=tcp]
 ```
 
 Let's also install iptables and apache `sudo apt-get install iptables apache2`
+
+Then we create a file `/etc/fail2ban/filter.d/http-get-dos.conf` and add the text
+```
+[Definition]
+
+failregex = ^ -.*GET
+ignoreregex = 
+```
+Let's restart the services:
+```
+$ sudo ufw reload
+$ sudo service fail2ban restart
+```
+
+You can check the status with `sudo fail2ban client status`.
+Now, let's make a __SlowLoris__ attack to check that our configurations work. For that we need to install git.
+
+Then we need to git clone the SlowLoris from github `git clone https://github.com/gkbrk/slowloris.git`.
+And run the attack
+```
+cd slowloris
+perl slowloris.py 10.12.133.***
+```
+---
+# 6.
+
+Let's set up a protection against __scans on open ports__ on our VM. 
 
