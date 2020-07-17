@@ -236,14 +236,24 @@ $ mailx
 ```
 
 ---
-# 9.
+
+## Web
+
+__Tasks:__
+- Set a web server that should be available on the VMs IP. You can choose between Nginx and Apache.
+- You have to set a self-signed SSL on all your services.
 
 Time to __deploy a web application__ with our VM IP!
 Create your site inside the `/var/www/html/` folder and it should show up on your chosen ip address!
 
 ---
-# 10.
 
-In the last step, we need to create a self-signed SSL
+In the last step, we need to create a __self-signed SSL__. I followed this step-by-step [guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04) to create the certificate.
 
-I followed this step-by-step [guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04) to create the certificate.
+---
+
+## Deployment
+
+__Tasks:__
+- Propose a functional solution for deployment automation.
+
