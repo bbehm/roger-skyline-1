@@ -257,3 +257,4 @@ In the last step, we need to create a __self-signed SSL__. I followed this step-
 __Tasks:__
 - Propose a functional solution for deployment automation.
 
+I made a script that I scheduled through crontab to git pull and update the website straight from my github profile.
