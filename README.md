@@ -239,3 +239,11 @@ $ mailx
 # 9.
 
 Time to __deploy a web application__ with our VM IP!
+Create your site inside the `/var/www/html/` folder and it should show up on your chosen ip address!
+
+---
+# 10.
+
+In the last step, we need to create a self-signed SSL
+
+I followed this step-by-step [guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04) to create the certificate.
