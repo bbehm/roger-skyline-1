@@ -190,3 +190,18 @@ Restart the portsentry service with `sudo service portsentry restart`.
 
 Now it is time to __stop the services we don't need__. 
 
+Let's check which services are running by `sudo service --status-all` / `sudo systemctl list-unit-files --type=service | grep enabled`.
+
+I decided to disable the following services:
+```
+sudo systemctl disable keyboard-setup.service
+sudo systemctl disable syslog.service
+sudo systemctl disable console-setup.service
+sudo systemctl disable apt-daily.timer
+sudo systemctl disable apt-daily-upgrade.timer
+```
+
+---
+# 8.
+
+
