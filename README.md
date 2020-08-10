@@ -159,14 +159,14 @@ $ sudo ufw reload
 $ sudo service fail2ban restart
 ```
 
-You can check the status with `sudo fail2ban client status`.
+You can check the status with `sudo fail2ban-client status`.
 Now, let's make a __SlowLoris__ attack to check that our configurations work. For that we need to install git.
 
 Then we need to git clone the SlowLoris from github `git clone https://github.com/gkbrk/slowloris.git`.
 And run the attack
 ```
 cd slowloris
-perl slowloris.py 10.12.133.***
+python slowloris.py 10.12.133.***
 ```
 ---
 # 6.
